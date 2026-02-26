@@ -1,3 +1,21 @@
+
+# في بداية الكود، تحت الاستيرادات
+import subprocess
+import sys
+
+# التحقق من وجود ffmpeg
+def check_ffmpeg():
+    try:
+        subprocess.run(['ffmpeg', '-version'], capture_output=True)
+        print("✅ FFmpeg مثبت")
+        return True
+    except:
+        print("⚠️ FFmpeg غير مثبت - استمرار بدون FFmpeg")
+        return False
+
+# شغلها بعد تعريف bot
+check_ffmpeg()
+
 # ------------------ تشغيل البوت ------------------
 def main():
     print("╔════════════════════════════╗")

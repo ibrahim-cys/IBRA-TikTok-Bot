@@ -1,22 +1,13 @@
-FROM python:3.11-slim-buster
+FROM python:3.11-slim
 
-# تثبيت ffmpeg بشكل صحيح
-RUN apt-get update && \
-    apt-get install -y ffmpeg && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# تثبيت ffmpeg
+RUN apt-get update && apt-get install -y ffmpeg && rm -rf /var/lib/apt/lists/*
 
-# تحديد مجلد العمل
 WORKDIR /app
 
-# نسخ ملف المتطلبات
 COPY requirements.txt .
-
-# تثبيت المكتبات
 RUN pip install --no-cache-dir -r requirements.txt
 
-# نسخ باقي الملفات
-COPY . .
+COPY tiktok_premium_bot.py .
 
-# أمر التشغيل
-CMD python tiktok_premium_bot.py
+CMD ["python", "tiktok_premium_bot.py"]
